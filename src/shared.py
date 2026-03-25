@@ -1,9 +1,7 @@
 name = "source-caption-creator"
-desc = "Tool for creating, managing, compiling captions/subtitles for Source Engine games."
+desc = "Tool for creating, managing and compiling captions/subtitles for Source Engine games."
 ver = "1.0.0"
 url = "https://www.github.com/timmycelle/source-caption-creator"
-
-from srctools import game as srcgame
 
 class SCC:
     json: dict = {}
@@ -25,3 +23,4 @@ frm = {
 import argparse
 
 parser = argparse.ArgumentParser(description=f"{frm["BOLD"]}{name}{frm["END"]}\n\n{desc}\nCreated by timmycelle.\nProtected under the MIT License.\n\nSee more at {url}", formatter_class=argparse.RawDescriptionHelpFormatter)
+#parser.add_argument("-dev", action="store_true", help="Developer mode")
