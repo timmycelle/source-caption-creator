@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='scc_cli',
+    name='SCCcli',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

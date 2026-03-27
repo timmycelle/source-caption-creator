@@ -23,4 +23,7 @@ frm = {
 import argparse
 
 parser = argparse.ArgumentParser(description=f"{frm["BOLD"]}{name}{frm["END"]}\n\n{desc}\nCreated by timmycelle.\nProtected under the MIT License.\n\nSee more at {url}", formatter_class=argparse.RawDescriptionHelpFormatter)
-#parser.add_argument("-dev", action="store_true", help="Developer mode")
+
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s :: [%(levelname)s] :: %(message)s")
