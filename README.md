@@ -1,7 +1,8 @@
 # source-caption-creator
-is a tool for creating, managing and compiling captions/subtitles for Source Engine games.
+is a tool for creating, managing and compiling captions/subtitles for the Source Engine.
 
 It takes JSON data as input and outputs .txt resource files. Optionally, you can then compile the .txt files to .dat that the engine can then use as actual captions in-game.
+It also supports Strata Source (.kv3).
 
 > [!NOTE]
 > For more information on Closed Captions in the Source Engine, visit the [Valve Developer Community](https://developer.valvesoftware.com/wiki/Closed_Captions).
