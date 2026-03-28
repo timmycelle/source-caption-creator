@@ -64,8 +64,6 @@ The CLI version is the console version and only supports converting/compiling. R
 |-|-|-|-|-|
 |`txt`|Caption message|String|`"What's up?"`|-|
 |`dn`|Display name|String|`"Wheatley"`|-|
-|`dnbold`|Turns the display name bold|Bool|`true`|-|
-|`dnitalic`|Turns the display name italic|Bool|`true`|-|
 |`ndn`|Don't show display name|Bool|`true`|-|
 |`sfx`|Marks line as sound effect|Bool|`true`|-|
 |`clr`|Color of the caption|String|`"#ff00ff"` or `"255,0,255"`|RGB and HEX codes are both supported.|
@@ -75,7 +73,17 @@ The CLI version is the console version and only supports converting/compiling. R
 |`norepeat`|Controls how often a line can be repeated.|Integer|`10`|-|
 |`len`|Overrides how long the line will display.|Integer|`5`|-|
 |`nocatinkey`|Removes `"<category>."` prefix of line name|Bool|Turns `"glados.mod-1-magenta"` to just `"mod-1-magenta"`|-|
-
+## Arguments (cli)
+|Option(s)|Type|Meaning|
+|-|-|-|
+|`-game`|String|Full path to Source Engine game directory | e.g.: `...\Portal 2\portal2_dlc3`|
+|`-json`|String|Full path to JSON Caption File|
+|`--subtitles-to-kv3`|Flag|(Strata Source) Convert subtitles from JSON to `subtitles_<lang>.kv3`|
+|`--closecaptions-to-kv3`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.kv3`|
+|`--subtitles-to-txt`|Flag|Convert subtitles from JSON to `subtitles_<lang>.txt`|
+|`--closecaptions-to-txt`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.txt`|
+|`--subtitles-to-dat`|Flag|Compile converted subtitles (`subtitles_<lang>.txt`) to `subtitles_<lang>.dat`|
+|`--closecaptions-to-dat`|Flag|Compile converted closed captions (`closecaption_<lang>.txt`) to `closecaption_<lang>.dat`|
 ## Building
 1. `git clone https://github.com/timmycelle/source-caption-creator.git/`
 2. `python -m venv venv`

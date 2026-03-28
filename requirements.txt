@@ -1,5 +1,6 @@
 PySide6
 srctools
 colour
+keyvalues3
 git+https://github.com/Project-Collapse-Studios/PCSLogger.git
 git+https://github.com/Project-Collapse-Studios/PyCaptionCompiler.git

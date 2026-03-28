@@ -1,6 +1,6 @@
 name = "source-caption-creator"
 desc = "Tool for creating, managing and compiling captions/subtitles for Source Engine games."
-ver = "1.0.0"
+ver = "INDEV"
 url = "https://www.github.com/timmycelle/source-caption-creator"
 
 class SCC:
