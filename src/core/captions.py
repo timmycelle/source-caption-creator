@@ -116,17 +116,21 @@ def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False
                 keyvalues3.write(kv3, kv3_output)
                 kv3_output = kv3_output.getvalue()
                 kv3 = kv3_output
-                for comment in json["info"].split("\n"):
-                    kv3 = f"{kv3}\n// {comment}"
+                if "info" in json:
+                    for comment in json["info"].split("\n"):
+                        kv3 = f"{kv3}\n// {comment}"
                 kv3 = f"{kv3}\n\n{credits}"
+                if not os.path.exists(p_kv3): os.makedirs(os.path.dirname(p_kv3), exist_ok=True)
                 open(p_kv3, "w", encoding="utf-8").write(kv3)
                 logging.info(f"Finished converting {type} to '{p_kv3}'!")
             else:
                 txt = Keyvalues("lang", [Keyvalues("Language", lang), txt_tokens])
                 txt = txt.serialise(indent_braces=False)
-                for comment in json["info"].split("\n"):
-                    txt = f"{txt}\n// {comment}"
+                if "info" in json:
+                    for comment in json["info"].split("\n"):
+                        txt = f"{txt}\n// {comment}"
                 txt = f"{txt}\n\n{credits}"
+                if not os.path.exists(p_txt): os.makedirs(os.path.dirname(p_txt), exist_ok=True)
                 open(p_txt, "w", encoding="utf-16").write(txt)
                 logging.info(f"Finished converting {type} to '{p_txt}'!")
 
