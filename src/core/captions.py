@@ -25,7 +25,7 @@ def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False
                     merge(dict1[key], value)
                 else:
                     dict1[key] = value
-        def insertvariables(value: str):
+        def variable(value: str):
             if not "variables" in json["data"]: return value
             for variable in json["data"]["variables"]:
                 value = value.replace(f"${variable}", json["data"]["variables"][variable])
@@ -59,10 +59,10 @@ def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False
                         if bool(line_data["nocatinkey"]): key = line
                     txt = "" # actual message of the caption
                     if "txt" in line_data:
-                        txt = str(line_data["txt"]).replace("\n", "<br>")
+                        txt = variable(str(line_data["txt"]).replace("\n", "<br>"))
                     dn = ""
                     if "dn" in line_data:
-                        dn = f"{"<b>" if strata else "<B>"}{line_data["dn"]}:{"</b>" if strata else "<B>"} "
+                        dn = f"{"<b>" if strata else "<B>"}{variable(line_data["dn"])}:{"</b>" if strata else "<B>"} "
                         if "ndn" in line_data:
                             if bool(line_data["ndn"]):
                                 dn = ""      
@@ -73,29 +73,32 @@ def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False
                     if "sfx" in line_data:
                         if bool(line_data["sfx"]): codes_predn = f"{codes_predn}<sfx>"
                     if "clr" in line_data:
-                        clr = str(line_data["clr"])
-                        clr = insertvariables(clr)
+                        clr = variable(str(line_data["clr"]))
                         if "#" in clr: clr = ",".join(str(int(x * 255)) for x in colour.hex2rgb(clr))
                         if strata:
                             codes_predn = f"{codes_predn}<font color=\\\"rgb({clr})\\\">"
                         else:
                             codes_predn = f"{codes_predn}<clr:{clr}>"
-                    if "playerclr" in line_data:
-                        playerclr = list(line_data["playerclr"]) # for example: ["#ffff55", "255,0,200"]
-                        for color in range(2):
-                            color-=1
-                            playerclr[color] = insertvariables(playerclr[color])
-                            if "#" in playerclr[color]:
-                                playerclr[color] = ",".join(str(int(x * 255)) for x in colour.hex2rgb(playerclr[color]))
-                        codes_predn = f"{codes_predn}<playerclr{"=" if strata else ":"}{playerclr[0]}:{playerclr[1]}>"
+                    # playerclr wont be supported for kv3 for now
+                    # due to the current lack of documentation
+                    # on the format
+                    if not strata:
+                        if "playerclr" in line_data:
+                            playerclr = list(line_data["playerclr"]) # for example: ["#ffff55", "255,0,200"]
+                            for color in range(2):
+                                color-=1
+                                playerclr[color] = variable(playerclr[color])
+                                if "#" in playerclr[color]:
+                                    playerclr[color] = ",".join(str(int(x * 255)) for x in colour.hex2rgb(playerclr[color]))
+                            codes_predn = f"{codes_predn}<playerclr:{playerclr[0]}:{playerclr[1]}>"
                     if "bold" in line_data:
                         if bool(line_data["bold"]): codes_sufdn = f"{codes_sufdn}<b>" if strata else f"{codes_sufdn}<B>"
                     if "italic" in line_data:
                         if bool(line_data["italic"]): codes_sufdn = f"{codes_sufdn}<i>" if strata else f"{codes_sufdn}<I>"
                     if "norepeat" in line_data:
-                        codes_predn = f"{codes_predn}<norepeat{"=" if strata else ":"}{int(line_data["norepeat"])}>"
+                        codes_predn = f"{codes_predn}<norepeat{"=" if strata else ":"}{int(variable(str(line_data["norepeat"])))}>"
                     if "len" in line_data:
-                        codes_predn = f"{codes_predn}<len{"=" if strata else ":"}{int(line_data["len"])}>"
+                        codes_predn = f"{codes_predn}<len{"=" if strata else ":"}{int(variable(str(line_data["len"])))}>"
 
                     value = f"{codes_predn}{dn}{codes_sufdn}{txt}"
 

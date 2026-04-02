@@ -9,7 +9,7 @@ It takes JSON data as input and outputs .txt, .dat or .kv3 resource files.
 > [!IMPORTANT]
 > The tool is currently only available as cli (converting/compiling only), the GUI version is work-in-progress!
 
-### Conversion procedure
+## Conversion procedure
 The tool uses an inheritance-based system to build captions. This allows you to define global styles and override them for specific lines.
 
 The system goes as follows:
@@ -23,7 +23,7 @@ Order: shared ➔ language (Language overrides Shared).
 
 **2. Category & Line overrides**
 
-Within a language, lines inherit properties (like color (`clr`) or display names (`dn`)) from their parent category and apply their own on top.
+Within a language, lines inherit properties (like color `clr` or display names `dn`) from their parent category and apply their own on top.
 
 Order: category ➔ line (Line overrides Category).
 
@@ -93,6 +93,29 @@ Output (`subtitles_english.txt`)
 
 ```
 
+## Usage
+1. **Create a new `.json` caption file.**
+Either by manually editing the file or editing it through the GUI (not finished yet!).
+2. **Convert/Compile the file into a usable format:**
+#### CLI
+`python src/cli.py -game <full path to game directory> -json <full path to json caption file> [Convert/Compile flags]`
+#### GUI
+TBD
+
+3. **Start your game and enjoy!** Run the game with the option `-game <game directory>` or make sure it's mounted in `gameinfo.txt`. 
+
+### Arguments (cli)
+|Option(s)|Type|Description|
+|-|-|-|
+|`-game`|String|Full path to Source Engine game directory | e.g.: `...\Portal 2\portal2_dlc3`|
+|`-json`|String|Full path to JSON Caption File|
+|`--subtitles-to-kv3`|Flag|(Strata Source) Convert subtitles from JSON to `subtitles_<lang>.kv3`|
+|`--subtitles-to-txt`|Flag|Convert subtitles from JSON to `subtitles_<lang>.txt`|
+|`--subtitles-to-dat`|Flag|Compile converted subtitles (`subtitles_<lang>.txt`) to `subtitles_<lang>.dat`|
+|`--closecaptions-to-kv3`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.kv3`|
+|`--closecaptions-to-txt`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.txt`|
+|`--closecaptions-to-dat`|Flag|Compile converted closed captions (`closecaption_<lang>.txt`) to `closecaption_<lang>.dat`|
+
 ### Supported keys
 |Key|Type|Description|
 |-|-|-|
@@ -107,19 +130,9 @@ Output (`subtitles_english.txt`)
 |`norepeat`|Int|Sets how often a line can repeat.|
 |`nocatinkey`|Bool|Removes the `category.` prefix from the output key.|
 
-### Arguments (cli)
-|Option(s)|Type|Description|
-|-|-|-|
-|`-game`|String|Full path to Source Engine game directory | e.g.: `...\Portal 2\portal2_dlc3`|
-|`-json`|String|Full path to JSON Caption File|
-|`--subtitles-to-kv3`|Flag|(Strata Source) Convert subtitles from JSON to `subtitles_<lang>.kv3`|
-|`--closecaptions-to-kv3`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.kv3`|
-|`--subtitles-to-txt`|Flag|Convert subtitles from JSON to `subtitles_<lang>.txt`|
-|`--closecaptions-to-txt`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.txt`|
-|`--subtitles-to-dat`|Flag|Compile converted subtitles (`subtitles_<lang>.txt`) to `subtitles_<lang>.dat`|
-|`--closecaptions-to-dat`|Flag|Compile converted closed captions (`closecaption_<lang>.txt`) to `closecaption_<lang>.dat`|
-
 ### Building
+If you don't wish to run the tool from source or use pre-built executables from the releases (not available yet!), you can build the tool yourself. Here's how to do it:
+
 1. Clone the repository:
 `git clone https://github.com/timmycelle/source-caption-creator.git/`
 2. Create virtual environment:
@@ -131,4 +144,4 @@ Linux: `source venv/bin/activate` | Windows: `.\venv\Scripts\activate.ps1`
 5. Install PyInstaller:
 `pip install pyinstaller`
 6. Create executable(s):
-`pyinstaller scc.spec` or `pyinstaller cli.spec`
+`pyinstaller cli.spec`/`pyinstaller gui.spec`
