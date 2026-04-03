@@ -113,7 +113,7 @@ TBD
 |`--subtitles-to-txt`|Flag|Convert subtitles from JSON to `subtitles_<lang>.txt`|
 |`--subtitles-to-dat`|Flag|Compile converted subtitles (`subtitles_<lang>.txt`) to `subtitles_<lang>.dat`|
 |`--closecaptions-to-kv3`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.kv3`|
-|`--closecaptions-to-txt`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.txt`|
+|`--closecaptions-to-txt`|Flag|Convert closed captions from JSON to `closecaption_<lang>.txt`|
 |`--closecaptions-to-dat`|Flag|Compile converted closed captions (`closecaption_<lang>.txt`) to `closecaption_<lang>.dat`|
 
 ### Supported keys
