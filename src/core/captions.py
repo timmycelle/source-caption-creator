@@ -59,7 +59,7 @@ def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False
                         if bool(line_data["nocatinkey"]): key = line
                     txt = "" # actual message of the caption
                     if "txt" in line_data:
-                        txt = variable(str(line_data["txt"]).replace("\n", "<br>"))
+                        txt = variable(str(line_data["txt"]).replace("\n", "<br>" if strata else "<cr>"))
                     dn = ""
                     if "dn" in line_data:
                         dn = f"{"<b>" if strata else "<B>"}{variable(line_data["dn"])}:{"</b>" if strata else "<B>"} "
