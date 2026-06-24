@@ -7,7 +7,65 @@ It takes JSON data as input and outputs .txt, .dat or .kv3 resource files.
 > For more information on Closed Captions in the Source Engine, visit the [Valve Developer Community](https://developer.valvesoftware.com/wiki/Closed_Captions).
 
 > [!IMPORTANT]
-> The tool is currently only available as cli (converting/compiling only), the GUI version is work-in-progress!
+> The tool is currently only available as CLI (converting/compiling only), the GUI version is work-in-progress!
+
+## Usage
+1. **Create a new `.json` caption file.**
+Either by manually editing the file or editing it through the GUI (not finished yet!).
+2. **Convert/Compile the file into a usable format:**
+#### CLI
+`python src/cli.py -game <full path to game directory> -json <full path to json caption file> [Convert/Compile flags]`
+#### GUI
+TBD
+
+3. **Start your game and enjoy!** Run the game with the option `-game <game directory>` or make sure it's mounted in `gameinfo.txt`. 
+
+### Arguments (CLI)
+|Option(s)|Type|Description|
+|-|-|-|
+|`-game`|String|Full path to Source Engine game directory | e.g.: `...\Portal 2\portal2_dlc3`|
+|`-json`|String|Full path to JSON Caption File|
+|`--subtitles-to-kv3`|Flag|(Strata Source) Convert subtitles from JSON to `subtitles_<lang>.kv3`|
+|`--subtitles-to-txt`|Flag|Convert subtitles from JSON to `subtitles_<lang>.txt`|
+|`--subtitles-to-dat`|Flag|Compile converted subtitles (`subtitles_<lang>.txt`) to `subtitles_<lang>.dat`|
+|`--closecaptions-to-kv3`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.kv3`|
+|`--closecaptions-to-txt`|Flag|Convert closed captions from JSON to `closecaption_<lang>.txt`|
+|`--closecaptions-to-dat`|Flag|Compile converted closed captions (`closecaption_<lang>.txt`) to `closecaption_<lang>.dat`|
+
+### Supported keys
+|Key|Type|Description|
+|-|-|-|
+|`txt`|String|The actual caption message.|
+|`dn` |String|Display name (Speaker).|
+|`ndn`|Bool|If `true`, hides the display name.|
+|`clr`|String| Color in `"R,G,B"` or `"#HEX"`.|
+|`playerclr`|List|`["client_color", "other_color"]` for specific targeting.|
+|`sfx`|Bool|Marks the line as a sound effect.|
+|`bold`/`italic`|Bool| Toggles text styling.|
+|`len`|Int| Overrides display duration (seconds).|
+|`norepeat`|Int|Sets how often a line can repeat.|
+|`nocatinkey`|Bool|Removes the `category.` prefix from the output key.|
+
+### Installation
+The easiest way to install this tool is to grab the latest release from the [Releases](https://github.com/timmycelle/source-caption-creator/releases) menu.
+
+> [!IMPORTANT]
+> Since the tool is still work-in-progress, the releases are flagged as pre-release and are therefore not instantly visible from the main repo page.
+
+However, if you don't wish to use the pre-built executables from the releases, or run the tool from source, you can build the tool yourself. Here's how to do it:
+
+1. Clone the repository:
+`git clone https://github.com/timmycelle/source-caption-creator.git/`
+2. Create virtual environment:
+`python3 -m venv venv`
+3. Activate virtual environment:
+Linux: `source venv/bin/activate` | Windows: `.\venv\Scripts\activate.ps1`
+4. Install required modules:
+`pip install -r requirements.txt`
+5. Install PyInstaller:
+`pip install pyinstaller`
+6. Create executable(s):
+`pyinstaller cli.spec`/`pyinstaller gui.spec`
 
 ## Conversion procedure
 The tool uses an inheritance-based system to build captions. This allows you to define global styles and override them for specific lines.
@@ -92,56 +150,3 @@ Output (`subtitles_english.txt`)
 // See https://www.github.com/timmycelle/source-caption-creator for more info
 
 ```
-
-## Usage
-1. **Create a new `.json` caption file.**
-Either by manually editing the file or editing it through the GUI (not finished yet!).
-2. **Convert/Compile the file into a usable format:**
-#### CLI
-`python src/cli.py -game <full path to game directory> -json <full path to json caption file> [Convert/Compile flags]`
-#### GUI
-TBD
-
-3. **Start your game and enjoy!** Run the game with the option `-game <game directory>` or make sure it's mounted in `gameinfo.txt`. 
-
-### Arguments (cli)
-|Option(s)|Type|Description|
-|-|-|-|
-|`-game`|String|Full path to Source Engine game directory | e.g.: `...\Portal 2\portal2_dlc3`|
-|`-json`|String|Full path to JSON Caption File|
-|`--subtitles-to-kv3`|Flag|(Strata Source) Convert subtitles from JSON to `subtitles_<lang>.kv3`|
-|`--subtitles-to-txt`|Flag|Convert subtitles from JSON to `subtitles_<lang>.txt`|
-|`--subtitles-to-dat`|Flag|Compile converted subtitles (`subtitles_<lang>.txt`) to `subtitles_<lang>.dat`|
-|`--closecaptions-to-kv3`|Flag|(Strata Source) Convert closed captions from JSON to `closecaption_<lang>.kv3`|
-|`--closecaptions-to-txt`|Flag|Convert closed captions from JSON to `closecaption_<lang>.txt`|
-|`--closecaptions-to-dat`|Flag|Compile converted closed captions (`closecaption_<lang>.txt`) to `closecaption_<lang>.dat`|
-
-### Supported keys
-|Key|Type|Description|
-|-|-|-|
-|`txt`|String|The actual caption message.|
-|`dn` |String|Display name (Speaker).|
-|`ndn`|Bool|If `true`, hides the display name.|
-|`clr`|String| Color in `"R,G,B"` or `"#HEX"`.|
-|`playerclr`|List|`["client_color", "other_color"]` for specific targeting.|
-|`sfx`|Bool|Marks the line as a sound effect.|
-|`bold`/`italic`|Bool| Toggles text styling.|
-|`len`|Int| Overrides display duration (seconds).|
-|`norepeat`|Int|Sets how often a line can repeat.|
-|`nocatinkey`|Bool|Removes the `category.` prefix from the output key.|
-
-### Building
-If you don't wish to run the tool from source or use pre-built executables from the releases (not available yet!), you can build the tool yourself. Here's how to do it:
-
-1. Clone the repository:
-`git clone https://github.com/timmycelle/source-caption-creator.git/`
-2. Create virtual environment:
-`python -m venv venv`
-3. Activate virtual environment:
-Linux: `source venv/bin/activate` | Windows: `.\venv\Scripts\activate.ps1`
-4. Install required modules:
-`pip install -r requirements.txt`
-5. Install PyInstaller:
-`pip install pyinstaller`
-6. Create executable(s):
-`pyinstaller cli.spec`/`pyinstaller gui.spec`

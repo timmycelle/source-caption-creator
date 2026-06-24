@@ -24,11 +24,11 @@ class Main(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.settings = QSettings("timmycelle", name)
+        self.settings = QSettings("timmycelle", project_name)
 
         self.current_style = str(self.settings.value("style", "Fusion", type=str))
 
-        self.setWindowTitle(name)
+        self.setWindowTitle(project_name)
         self.resize(800, 600)
 
         self.menubar = QMenuBar()
@@ -81,7 +81,7 @@ class Main(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    app.setApplicationName(name)
+    app.setApplicationName(project_name)
     app.processEvents()
     win = Main()
     win.show()

@@ -11,7 +11,7 @@ import copy
 import logging
 import io
 
-Logger.RegisterMainApplication(name)
+Logger.RegisterMainApplication(project_name)
 
 def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False, closecaption: bool = False):
     if not "data" in json: return
@@ -107,7 +107,7 @@ def convert(game: str, json: dict, strata: bool = False, subtitles: bool = False
                         kv3_tokens[key] = value
                     else:
                         txt_tokens.append(Keyvalues(key, value))
-            credits = f"// Generated with {name} {ver} by timmycelle\n// See {url} for more info\n"
+            credits = f"// Generated with {project_name} {project_ver} by timmycelle\n// See {project_url} for more info\n"
             if strata:
                 kv3 = {
                     "format_version": 0,

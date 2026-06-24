@@ -1,7 +1,7 @@
-name = "source-caption-creator"
-desc = "Tool for creating, managing and compiling captions/subtitles for Source Engine games."
-ver = "INDEV"
-url = "https://www.github.com/timmycelle/source-caption-creator"
+project_name = "source-caption-creator"
+project_desc = "Tool for creating, managing and compiling captions/subtitles for Source Engine games."
+project_ver = "INDEV"
+project_url = "https://www.github.com/timmycelle/source-caption-creator"
 
 class SCC:
     json: dict = {}
@@ -22,7 +22,7 @@ frm = {
 
 import argparse
 
-parser = argparse.ArgumentParser(description=f"{frm["BOLD"]}{name}{frm["END"]}\n\n{desc}\nCreated by timmycelle.\nProtected under the MIT License.\n\nSee more at {url}", formatter_class=argparse.RawDescriptionHelpFormatter)
+parser = argparse.ArgumentParser(description=f"{frm["BOLD"]}{project_name}{frm["END"]}\n\n{project_desc}\nCreated by timmycelle.\nProtected under the MIT License.\n\nSee more at {project_url}", formatter_class=argparse.RawDescriptionHelpFormatter)
 
 import logging
 
