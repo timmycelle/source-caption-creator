@@ -1,0 +1,28 @@
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=(1, 0, 0, 0),
+    prodvers=(1, 0, 0, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+    ),
+  kids=[
+    StringFileInfo(
+      [
+      StringTable(
+        '040904b0',
+        [StringStruct('CompanyName', 'timmycelle'),
+        StringStruct('FileDescription', 'source-caption-creator'),
+        StringStruct('FileVersion', '0.1.0'),
+        StringStruct('InternalName', 'source-caption-creator'),
+        StringStruct('LegalCopyright', 'Copyright (c) 2026'),
+        StringStruct('OriginalFilename', 'source-caption-creator.exe'),
+        StringStruct('ProductName', 'source-caption-creator'),
+        StringStruct('ProductVersion', '0.1.0')])
+      ]), 
+    VarFileInfo([VarStruct('Translation', [1033, 1200])])
+  ]
+)

@@ -1,0 +1,1 @@
+pyinstaller cli.spec

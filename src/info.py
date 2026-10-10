@@ -1,0 +1,6 @@
+project_name = "source-caption-creator"
+project_desc = "Python tool for creating, managing and compiling Source Engine captions/subtitles"
+project_ver = "0.1.0"
+project_url = "https://www.github.com/timmycelle/source-caption-creator"
+author_name = "timmycelle"
+author_url = "https://www.github.com/timmycelle"
