@@ -1,3 +1,3 @@
 @echo off
 
-pyinstaller cli.spec
+pyinstaller --noconfirm cli.spec

@@ -1,1 +1,2 @@
-pyinstaller cli.spec
+#!/bin/bash
+pyinstaller --noconfirm cli.spec
